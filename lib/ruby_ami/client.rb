@@ -23,7 +23,7 @@ module RubyAMI
 
     def start
       @events_stream.async.run unless @events
-      @actions_stream.async.run unless @events
+      @actions_stream.async.run
       @state = :started
     end
 
