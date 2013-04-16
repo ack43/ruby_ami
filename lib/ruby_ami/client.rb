@@ -14,6 +14,7 @@ module RubyAMI
       client          = current_actor
       @events_stream  = new_stream ->(event) { client.async.handle_event event }
       @actions_stream = new_stream ->(message) { client.async.handle_message message }
+      @events         = @options[:events] || true
     end
 
     [:started, :stopped, :ready].each do |state|
@@ -21,8 +22,8 @@ module RubyAMI
     end
 
     def start
-      @events_stream.async.run
-      @actions_stream.async.run
+      @events_stream.async.run unless @events
+      @actions_stream.async.run unless @events
       @state = :started
     end
 
