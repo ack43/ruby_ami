@@ -99,7 +99,7 @@ module RubyAMI
 
     private
 
-    def login(username, password, event_mask = 'On')
+    def login(username, password, event_mask = 'Off')
       dispatch_action 'Login',
         'Username' => username,
         'Secret'   => password,
